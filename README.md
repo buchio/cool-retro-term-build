@@ -14,7 +14,7 @@ brew tap buchio/cool-retro-term-build https://github.com/buchio/cool-retro-term-
 Install the pre-built application using Homebrew Cask. This is the fastest method.
 
 ```bash
-brew install --cask cool-retro-term
+brew install --cask buchio/cool-retro-term-build/cool-retro-term
 ```
 *Note: This downloads the dmg from the Releases page of this repository.*
 
@@ -22,7 +22,7 @@ brew install --cask cool-retro-term
 If you prefer to compile from source or there is no pre-built binary for your architecture/version:
 
 ```bash
-brew install cool-retro-term
+brew install buchio/cool-retro-term-build/cool-retro-term
 ```
 *Note: This will take a few minutes as it downloads the source code and compiles it locally.*
 
@@ -41,6 +41,18 @@ You can also build the application manually using the provided script without Ho
     ./Formula/build-macos.sh
     ```
     *This will create a `cool-retro-term.dmg` and `cool-retro-term.app` in the directory.*
+
+## Security & Privacy (Unidentified Developer Warning)
+
+Since this application is built via a community script and is not signed with a paid Apple Developer Certificate, macOS may prevent it from opening by default with a warning that it is from an **"Unidentified Developer"**.
+
+To open the app:
+
+1.  **Right-click (or Control-click)** the `cool-retro-term` application in your `Applications` folder.
+2.  Select **Open** from the context menu.
+3.  Click **Open** in the dialog box that appears.
+
+This only needs to be done once. Alternatively, you can go to **System Settings > Privacy & Security** and allow the app to run.
 
 ## Features & Patches
 
