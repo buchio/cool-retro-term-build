@@ -1,5 +1,5 @@
 cask "cool-retro-term" do
-  version "1.2.0" # This should be updated when releasing
+  version "1.2.0-braille-patched" # This should be updated when releasing
   sha256 :no_check # Or specific checksum if automated
 
   url "https://github.com/buchio/cool-retro-term-build/releases/download/v#{version}/cool-retro-term.dmg"
