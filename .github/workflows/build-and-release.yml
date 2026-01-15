@@ -1,0 +1,61 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ "main" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build macOS DMG
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          brew install qt@5
+          brew link qt@5 --force
+
+      - name: Build DMG
+        run: |
+          # Ensure build script is executable
+          chmod +x homebrew/build-macos.sh
+          
+          # Run the build script
+          # We do NOT set SKIP_DMG because we want the DMG artifact
+          ./homebrew/build-macos.sh
+
+      - name: Upload DMG Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cool-retro-term.dmg
+          path: homebrew/cool-retro-term.dmg
+          if-no-files-found: error
+
+  release:
+    name: Create Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Download DMG Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cool-retro-term.dmg
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: cool-retro-term.dmg
+          generate_release_notes: true
