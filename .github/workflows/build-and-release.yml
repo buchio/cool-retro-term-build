@@ -25,18 +25,22 @@ jobs:
 
       - name: Build DMG
         run: |
-          # Ensure build script is executable
-          chmod +x homebrew/build-macos.sh
+          # Clone actual source code
+          git clone --recursive https://github.com/Swordfish90/cool-retro-term.git
           
-          # Run the build script
-          # We do NOT set SKIP_DMG because we want the DMG artifact
-          ./homebrew/build-macos.sh
+          # Copy build script to source directory
+          cp Formula/build-macos.sh cool-retro-term/
+          chmod +x cool-retro-term/build-macos.sh
+          
+          # Go into source dir and build
+          cd cool-retro-term
+          ./build-macos.sh
 
       - name: Upload DMG Artifact
         uses: actions/upload-artifact@v4
         with:
           name: cool-retro-term.dmg
-          path: homebrew/cool-retro-term.dmg
+          path: cool-retro-term/cool-retro-term.dmg
           if-no-files-found: error
 
   release:

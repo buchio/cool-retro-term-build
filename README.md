@@ -38,7 +38,7 @@ You can also build the application manually using the provided script without Ho
 
 2.  Run the build script:
     ```bash
-    ./homebrew/build-macos.sh
+    ./Formula/build-macos.sh
     ```
     *This will create a `cool-retro-term.dmg` and `cool-retro-term.app` in the directory.*
 
