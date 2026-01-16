@@ -1,4 +1,4 @@
-# cool-retro-term for macOS (Apple Silicon & Intel)
+# cool-retro-term for macOS (Apple Silicon)
 
 This repository provides a Homebrew Tap to easily install [cool-retro-term](https://github.com/Swordfish90/cool-retro-term) on macOS. It specifically fixes build issues on Apple Silicon (M1/M2/M3).
 
