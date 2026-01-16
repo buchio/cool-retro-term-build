@@ -89,17 +89,6 @@ git submodule update --init --recursive
 # Apply patches
 echo -e "${YELLOW}Applying patches...${NC}"
 
-# Patch: Fix Braille character width for btop/htop compatibility
-WCWIDTH_FILE="qmltermwidget/lib/konsole_wcwidth.cpp"
-if [ -f "$WCWIDTH_FILE" ]; then
-    if ! grep -q "Braille patterns" "$WCWIDTH_FILE"; then
-        echo "  Patching $WCWIDTH_FILE for Braille character support..."
-        perl -i -0pe 's/(int konsole_wcwidth\(wchar_t ucs\)\n\{)\n/$1\n    \/\/ Braille patterns (U+2800-U+28FF) should always be width 1\n    \/\/ These are used by tools like btop, htop for drawing graphs\n    if (ucs >= 0x2800 \&\& ucs <= 0x28FF) {\n        return 1;\n    }\n\n/s' "$WCWIDTH_FILE"
-    else
-        echo "  $WCWIDTH_FILE already patched, skipping..."
-    fi
-fi
-
 # Clean previous build
 echo -e "${YELLOW}Cleaning previous build...${NC}"
 rm -rf cool-retro-term.app

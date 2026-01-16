@@ -1,6 +1,6 @@
 # cool-retro-term for macOS (Apple Silicon & Intel)
 
-This repository provides a Homebrew Tap to easily install [cool-retro-term](https://github.com/Swordfish90/cool-retro-term) on macOS. It specifically fixes build issues on Apple Silicon (M1/M2/M3) and includes patches for better compatibility (e.g., Braille character support for `btop`).
+This repository provides a Homebrew Tap to easily install [cool-retro-term](https://github.com/Swordfish90/cool-retro-term) on macOS. It specifically fixes build issues on Apple Silicon (M1/M2/M3).
 
 ## Installation
 
@@ -54,7 +54,6 @@ To open the app:
 
 This only needs to be done once. Alternatively, you can go to **System Settings > Privacy & Security** and allow the app to run.
 
-## Features & Patches
+## Features
 
 - **Apple Silicon Support**: Automatically handles Qt5 path issues and architecture specific configurations.
-- **Braille Support**: Patches `konsole_wcwidth.cpp` to correct the width of Braille characters (U+2800-U+28FF). This fixes display glitches in tools like `btop` and `htop`.
